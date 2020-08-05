@@ -1,1 +1,0 @@
-# Intel-People-Counter-App
