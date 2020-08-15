@@ -1,9 +1,4 @@
 # People Counter App Project Write-Up
-
-You can use this document as a template for providing your project write-up. However, if you
-have a different format you prefer, feel free to use it as long as you answer all required
-questions.
-
 ## Explaining Custom Layers
 
 Let's first understand what we mean by Custom Layers. Custom layers are layers that are not included in the list of the known layers.
@@ -29,7 +24,9 @@ The needed custom layer extensions are:
 Custom Layer extension for the inference engine
 
 Each device plugin includes a library of optimized implementations to execute known layer operations which must be extended to execute a custom layer. The custom layer extension is implemented according to the target device:
+
 1)Custom Layer CPU Extension - A compiled shared library needed by the CPU Plugin for executing the custom layer on the CPU.
+
 2)Custom Layer GPU Extension - OpenCL source code (.cl) for the custom layer kernel that will be compiled to execute on the GPU along with a layer description file (.xml) needed by the GPU Plugin for the custom layer kernel.
 
 This is all made possible by the Model extension tool generator which generates template source code files for each of the extensions needed by the Model Optimizer and the Inference Engine
