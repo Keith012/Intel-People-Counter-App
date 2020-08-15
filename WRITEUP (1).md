@@ -44,7 +44,7 @@ The process behind the coversion of custom layer can be simply concluded in thes
 
 ## Comparing Model Performance
 
-I used 3 models namely;
+I used 3 models namely:
 1)ssd_mobilenet_v2_coco
 2)faster_rcnn_inception_v2_coco
 3)ssd_inception_v2_coco
