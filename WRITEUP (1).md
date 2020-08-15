@@ -42,17 +42,23 @@ The process behind the coversion of custom layer can be simply concluded in thes
 ## Comparing Model Performance
 
 I used 3 models namely:
+
 1)ssd_mobilenet_v2_coco
+
 2)faster_rcnn_inception_v2_coco
+
 3)ssd_inception_v2_coco
 
-This is how they compare
+This is how they compare:
+
 SIZE
+
 1)The size of the frozen inference graph of the ssd mobilenet V2 before conversion was 69.7MB the post conversion size was 67.5MB
 2)The size of the frozen inference graph of the faster rcnn inception model before conversion was 54.6MB the post-conversion size was 50.6MB
 3)The size of the  frozen inference graph of the ssd inception model before conversion was 97.3MB the post-converison size was 95.2MB
 
 INFERENCE TIME
+
 The threshold was 0.5
 Under the above threshold;
 1)ssd mobilenet inference time was at an average of about 60ms pre-conversion and 70 post-conversion
@@ -60,6 +66,7 @@ Under the above threshold;
 3)ssd inception model was at an average inference time of 97ms pre-conversion and 94 post-conversion
 
 ACCURACY
+
 The accuracy in all models was better post-conversion however comparing all three models what I noticed is that;
 1)The ssd inception model's accuracy wasn't good as it didn't detect most of the people in the frame, besides having a higher inference time then the ssd mobilenet
 
@@ -90,10 +97,6 @@ If the camera focal length/image size is poor this could lead to the edge system
 
 ## Model Research
 
-[This heading is only required if a suitable model was not found after trying out at least three
-different models. However, you may also use this heading to detail how you converted 
-a successful model.]
-
 In investigating potential people counter models, I tried each of the following three models:
 
 Model 1: [ssd_mobilenet_v2_coco] 
@@ -102,26 +105,29 @@ Source: [http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v2
 
 I converted the model to an Intermediate Representation withthe following arguments
 
-python /opt/intel/openvino/deployment_tools/model_optimizer/mo_tf.py --input_model frozen_inference_graph.pb --tensorflow_object_detection_api_pipeline_config pipeline.config --tensorflow_use_custom_operations_config /opt/intel/openvino/deployment_tools/model_optimizer/extensions/front/tf/ssd_v2_support.json --reverse_input_channel
+[python /opt/intel/openvino/deployment_tools/model_optimizer/mo_tf.py --input_model frozen_inference_graph.pb --tensorflow_object_detection_api_pipeline_config pipeline.config --tensorflow_use_custom_operations_config /opt/intel/openvino/deployment_tools/model_optimizer/extensions/front/tf/ssd_v2_support.json --reverse_input_channel]
 
 The model was good for the app, I liked it more.
 I tried to make the model better by reducing the threshold in my code because it missed somepeople in the frame when the threshold was high
 
 Model 2: [faster_rcnn_inception_v2_coco]
+
 Source: [http://download.tensorflow.org/models/object_detection/faster_rcnn_inception_v2_coco_2018_01_28.tar.gz]
 
 I converted the model to an Intermediate Representation with the following arguments
-python /opt/intel/openvino/deployment_tools/model_optimizer/mo.py --input_model model/faster_rcnn_inception_v2_coco/frozen_inference_graph.pb --tensorflow_object_detection_api_pipeline_config pipeline.config --reverse_input_channels --tensorflow_use_custom_operations_config /opt/intel/openvino/deployment_tools/model_optimizer/extensions/front/tf/faster_rcnn_support.json
+
+[python /opt/intel/openvino/deployment_tools/model_optimizer/mo.py --input_model model/faster_rcnn_inception_v2_coco/frozen_inference_graph.pb --tensorflow_object_detection_api_pipeline_config pipeline.config --reverse_input_channels --tensorflow_use_custom_operations_config /opt/intel/openvino/deployment_tools/model_optimizer/extensions/front/tf/faster_rcnn_support.json]
 
 The model gave me a hard time, it took me several days to make it work.
 I tried to make the model better by adding some extensions and making changes on the code as well as reducing the threshold
 
 
 Model 3:[SSD_inception_v2_coco]
+
 Source:[http://download.tensorflow.org/models/object_detection/ssd_inception_v2_coco_2018_01_28.tar.gz]
 
 I converted the model to an Intermediate Representation with the following arguments
-python /opt/intel/openvino/deployment_tools/model_optimizer/mo.py --input_model frozen_inference_graph.pb --tensorflow_object_detection_api_pipeline_config pipeline.config --reverse_input_channels --tensorflow_use_custom_operations_config /opt/intel/openvino/deployment_tools/model_optimizer/extensions/front/tf/ssd_v2_support.json
+[python /opt/intel/openvino/deployment_tools/model_optimizer/mo.py --input_model frozen_inference_graph.pb --tensorflow_object_detection_api_pipeline_config pipeline.config --reverse_input_channels --tensorflow_use_custom_operations_config /opt/intel/openvino/deployment_tools/model_optimizer/extensions/front/tf/ssd_v2_support.json]
 
 The model was my least favourite it incorrectly counted the people on the frame
 I tried to adjust the threshold and make some adjustments in my code but it still didn't meetmy expectations.
@@ -134,11 +140,13 @@ The model is downloaded in the following procedure
 
 1)Download the pre-requisite library sourcing the openvino installation by
 
-pip install requests pyyaml -t /usr/local/lib/python3.5/dist-packages && clear && 
-source /opt/intel/openvino/bin/setupvars.sh -pyver 3.5
+[pip install requests pyyaml -t /usr/local/lib/python3.5/dist-packages && clear && 
+source /opt/intel/openvino/bin/setupvars.sh -pyver 3.5]
 
 2)Navigating to the directory containing the Model downloader by
-cd /opt/intel/openvino/deployment_tools/open_model_zoo/tools/downloader
+
+[cd /opt/intel/openvino/deployment_tools/open_model_zoo/tools/downloader]
 
 3)Downloading the model with the following command
-sudo ./downloader.py --name person-detection-retail-0013 --precisions FP16 -o /home/workspace
+
+[sudo ./downloader.py --name person-detection-retail-0013 --precisions FP16 -o /home/workspace]
