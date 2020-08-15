@@ -145,8 +145,13 @@ source /opt/intel/openvino/bin/setupvars.sh -pyver 3.5]
 
 2)Navigating to the directory containing the Model downloader by
 
-[cd /opt/intel/openvino/deployment_tools/open_model_zoo/tools/downloader]
+[cd /opt/intel/openvino/deployment_toolhttps://docs.openvinotoolkit.org/latest/openvino_docs_HOWTO_Custom_Layers_Guide.htmls/open_model_zoo/tools/downloader]
 
 3)Downloading the model with the following command
 
 [sudo ./downloader.py --name person-detection-retail-0013 --precisions FP16 -o /home/workspace]
+
+
+Reference sources
+
+https://docs.openvinotoolkit.org/latest/openvino_docs_HOWTO_Custom_Layers_Guide.html
