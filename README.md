@@ -33,8 +33,8 @@ You will choose a model to use and convert it with the Model Optimizer.
 ### Software
 
 *   Intel® Distribution of OpenVINO™ toolkit 2019 R3 and higher release
-*   Node v6.17.1
-*   Npm v3.10.10
+*   Node v6.17.1 and higher
+*   Npm v3.10.10 and higher
 *   CMake
 *   MQTT Mosca server
   
