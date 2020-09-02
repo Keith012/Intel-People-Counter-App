@@ -1,4 +1,4 @@
-# OpenVino For People Counter
+# People Counter App
 
 | Details            |              |
 |-----------------------|---------------|
