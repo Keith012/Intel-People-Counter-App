@@ -19,7 +19,7 @@ class Network:
         self.output_blob = None
         self.exec_network = None
         self.infer_request = None
-
+        
     def load_model(self, model, cpu_extension, device="CPU"):
         ### TODO: Load the model ### 
         self.plugin = IECore()
